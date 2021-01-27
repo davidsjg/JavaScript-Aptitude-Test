@@ -1,0 +1,13 @@
+/* button {
+  display: block;
+  text-align: center;
+}
+
+div {
+  text-align: center;
+} */
+
+button:hover {
+  background: #f7f7f7;
+  border: 1px solid #8b8b8b;
+}

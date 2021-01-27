@@ -3,57 +3,90 @@
 //clock
 //game over
 
-// Access mulitple elements by ID using .querySelector()
+//Capturing references to elements and storing them in variables 
 var timeEl = document.querySelector(".time");
 var questionEl = document.querySelector(".question");
 var answersEl = document.querySelector(".possAnswers");
+var displayCorrEl = document.querySelector(".dispCorr")
+var startQuizBtn = document.getElementById("startQuiz");
 
-questionEl.textContent = "This is where questions will go"
-answersEl.textContent = "this is where potential answrs will go"
+var button1 = document.querySelector(".btn1");
+var button2 = document.querySelector(".btn2");
+var button3 = document.querySelector(".btn3");
+var button4 = document.querySelector(".btn4");
+
+var questionsArr = ["when was javascript invented?", "is javascript fun?"];
+var aSet = ["1928", "no"]
+var bSet = ["1955", "no"]
+var cSet = ["1966", "no"]
+var dSet = ["1995", "yes"]
+
+var i = 0;
+var answerClick;
 
 
+initiate();
 
-//JS
 
-
-//Data - Questions
-
-//Global Vars 
-
-//Functions 
-
-//Event Listeners 
-// Access toggle switch HTML element
-
+function initiate () {
+  button1.textContent = "";
+  button2.textContent = "";
+  button3.textContent = "";
+  button4.textContent = "";
+  answersEl.hidden = true;
+}
 
 var startQuiz = document.querySelector("#startQuiz");
 
-// Set default mode to dark
-var mode = "dark";
+function questionClick (index) {
 
-// Listen for a click event on toggle switch
+  button1.addEventListener("click", function() {
+  
+    return 1; 
+
+  });
+  button2.addEventListener("click", function() {
+    return 2; 
+  
+  });
+  button3.addEventListener("click", function() {
+    return 3; 
+  
+  });
+  button4.addEventListener("click", function() {
+    return 4; 
+  
+  });
+
+
+}
+
+function compareQuesAnswer (answer) {
+  console.log(answer);
+  console.log("you are in compareQuesAnswer");
+}
+
+function displayQuestions () {
+    questionEl.textContent = questionsArr[i];
+    button1.textContent = aSet[i];
+    button2.textContent = bSet[i];
+    button3.textContent = cSet[i];
+    button4.textContent = dSet[i];
+    var userSelect = questionClick();
+    console.log("userSelect = " + userSelect);
+    compareQuesAnswer(userSelect);
+}
+
 startQuiz.addEventListener("click", function() {
   //begin countdown timer for quiz
   setTime();
-  disp
+  //hide start quiz button and show answersEl
+  answersEl.hidden = false;
+  startQuizBtn.hidden = true;
+  displayQuestions();
 
 
 });
-
-//function startQuiz
-//function quesitons 
-//function questionClick
-//
-
-
-//click start button
-//ref startBtn on DOM
-//add onclick event 
-
-//start timer
-//ref timerEl on DOM
-//use of interval
-// Selects element by class
 
 
 
@@ -76,6 +109,13 @@ function setTime() {
 }
 
 
+
+// document.getElementById("startQuiz");
+//         .addEventListener("click", function() {
+//   document.getElementById("welcome").hidden = true;
+//   document.getElementById("awesome").hidden = false;
+// }, false);
+
 // function sendMessage() {
 //   timeEl.textContent = " ";
 //   var imgEl = document.createElement("img");
@@ -84,6 +124,22 @@ function setTime() {
 
 // }
 
+
+
+//function startQuiz
+//function quesitons 
+//function questionClick
+//
+
+
+//click start button
+//ref startBtn on DOM
+//add onclick event 
+
+//start timer
+//ref timerEl on DOM
+//use of interval
+// Selects element by class
 
 
 
@@ -99,3 +155,15 @@ function setTime() {
 //if incorrect, subtract time 
 //when all quesitons answered, game over 
 //when time reacehes zero, game over 
+
+//JS
+
+
+//Data - Questions
+
+//Global Vars 
+
+//Functions 
+
+//Event Listeners 
+// Access toggle switch HTML element
