@@ -22,9 +22,9 @@ var button4 = document.getElementById("btn4");
 
 var questionsArr = ["when was javascript invented?", "is javascript fun?"];
 var aSet = ["1928", "no"]
-var bSet = ["1955", "no"]
+var bSet = ["1955", "maybe"]
 var cSet = ["1966", "yes"]
-var dSet = ["1995", "no"]
+var dSet = ["1995", "possibly"]
 
 var answersArr = [3,2]
 
@@ -75,30 +75,6 @@ startQuiz.addEventListener("click", function() {
 
 });
 
-// function questionClick() {
-  
-//   answersEl.addEventListener("click", function() {
-//     if (button1) {
-//       console.log("you chose button 1")
-//       document.getElementById("btn1")
-//     } else if (button2){
-//       console.log("you chose button 2")
-//     }
-
-
-//   });
-// }
-
-
-
-// questionClick();
-
-
-
-
-
-
-
 function displayQuestions () {
 
     questionEl.textContent = questionsArr[i];
@@ -113,29 +89,41 @@ function displayQuestions () {
       userCompare = userAnswer.getAttribute("data-value");
       var userCompNum = parseInt(userCompare);
 
-      // console.log(typeof answersArr[i])
-      // console.log(typeof userCompNum)
+      console.log(answersArr[i])
+      console.log(userCompNum)
       
-      // console.log("userCompare = " + userCompare);
-      // checkAnswer();
-      // if (userCompNum === answersArr[i]){
-      //   score++;
-      //   displayCorrEl.textContent = "Correct!"
-      //   console.log("Your current score is " + score)
-  
-      // }
+
+      if (userCompNum === answersArr[i]){
+        console.log("in??")
+        score++;
+        displayCorrEl.textContent = "Correct!"
+        console.log("Your current score is " + score)
+        scoreBoard.textContent = score;
+        i++;
+          if (i < 5) {
+            displayQuestions();
+          } else {
+            endGame();
+          }
+      } else {
+        displayCorrEl.textContent = "Incorrect!  Lose 5 seconds!"
+        secondsLeft = secondsLeft - 5;
+        scoreBoard.textContent = score;
+        i++;
+        if (i < 5) {
+          displayQuestions();
+        } else {
+          endGame();
+        }
+
+      }
 
     })
 }
 
-function checkAnswer(answer) {
-
-  if (answer === answersArr[i]){
-    score++;
-    displayCorrEl.textContent = "Correct!"
-    scoreBoard.textContent = score;
-    
-  }
+function endGame () {
+  score = score + secondsLeft;
+  questionEl.textContent = "All done!"
 
 }
 
