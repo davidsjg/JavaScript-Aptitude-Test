@@ -7,8 +7,9 @@
 var timeEl = document.querySelector(".time");
 var questionEl = document.querySelector(".question");
 var answersEl = document.querySelector(".quiz");
-var displayCorrEl = document.querySelector(".dispCorr")
+var displayCorrEl = document.querySelector(".dispCorr");
 var startQuizBtn = document.getElementById("startQuiz");
+var scoreBoard = document.querySelector(".score");
 
 var button1 = document.getElementById("btn1");
 var button2 = document.getElementById("btn2");
@@ -17,16 +18,21 @@ var button4 = document.getElementById("btn4");
 
 
 
+
+
 var questionsArr = ["when was javascript invented?", "is javascript fun?"];
 var aSet = ["1928", "no"]
 var bSet = ["1955", "no"]
-var cSet = ["1966", "no"]
-var dSet = ["1995", "yes"]
+var cSet = ["1966", "yes"]
+var dSet = ["1995", "no"]
 
-var answersArr = ["d","d"]
+var answersArr = [3,2]
 
 var i = 0;
 var answerClick = 0;
+var userAnswer = 0;
+var userCompare = 0;
+var score = 0;
 
 
 initiate();
@@ -69,24 +75,23 @@ startQuiz.addEventListener("click", function() {
 
 });
 
-function questionClick() {
+// function questionClick() {
   
-  answersEl.addEventListener("click", function() {
-    if (button1) {
-      console.log("you chose button 1")
-      document.getElementById("btn1")
-    } else if (button2){
-      console.log("you chose button 2")
-    }
+//   answersEl.addEventListener("click", function() {
+//     if (button1) {
+//       console.log("you chose button 1")
+//       document.getElementById("btn1")
+//     } else if (button2){
+//       console.log("you chose button 2")
+//     }
 
 
-  });
-}
+//   });
+// }
 
 
 
-questionClick();
-console.log("answerClick is = " + answerClick);
+// questionClick();
 
 
 
@@ -95,34 +100,66 @@ console.log("answerClick is = " + answerClick);
 
 
 function displayQuestions () {
+
     questionEl.textContent = questionsArr[i];
     button1.textContent = aSet[i];
     button2.textContent = bSet[i];
     button3.textContent = cSet[i];
     button4.textContent = dSet[i];
 
-    button1.addEventListener("click", checkAnswer);
-    button2.addEventListener("click", checkAnswer);
-    button3.addEventListener("click", checkAnswer);
-    button4.addEventListener("click", checkAnswer);
+    //assigns a value of 0,1,2, or 3 to 
+    answersEl.addEventListener("click", function(event){
+      userAnswer = event.target;
+      userCompare = userAnswer.getAttribute("data-value");
+      var userCompNum = parseInt(userCompare);
 
-    checkAnswer();
+      // console.log(typeof answersArr[i])
+      // console.log(typeof userCompNum)
+      
+      // console.log("userCompare = " + userCompare);
+      // checkAnswer();
+      // if (userCompNum === answersArr[i]){
+      //   score++;
+      //   displayCorrEl.textContent = "Correct!"
+      //   console.log("Your current score is " + score)
+  
+      // }
+
+    })
 }
 
 function checkAnswer(answer) {
-  if (answer === answersArr[i]) {
-    i++
-    displayQuestions()
 
-  } else {
-    secondsLeft = secondsLeft - 10
-    displayQuestions()
+  if (answer === answersArr[i]){
+    score++;
+    displayCorrEl.textContent = "Correct!"
+    scoreBoard.textContent = score;
+    
   }
-console.log("you are in check answer")
 
 }
 
+// function checkAnswer(answer) {
+//  console.log(answer);
+//   if (answer === answersArr[i]) {
+//     i++
+//     // displayQuestions()
 
+//   } else {
+//     secondsLeft = secondsLeft - 10
+//     // displayQuestions()
+//   }
+// console.log("you are in check answer")
+
+// }
+
+   // checkAnswer(userAnswer);
+
+
+    // button1.addEventListener("click", checkAnswer);
+    // button2.addEventListener("click", checkAnswer);
+    // button3.addEventListener("click", checkAnswer);
+    // button4.addEventListener("click", checkAnswer);
 
 
 
