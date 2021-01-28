@@ -76,7 +76,6 @@ startQuiz.addEventListener("click", function() {
 });
 
 function displayQuestions () {
-
     questionEl.textContent = questionsArr[i];
     button1.textContent = aSet[i];
     button2.textContent = bSet[i];
@@ -91,39 +90,75 @@ function displayQuestions () {
 
       console.log(answersArr[i])
       console.log(userCompNum)
+
       
 
-      if (userCompNum === answersArr[i]){
-        console.log("in??")
-        score++;
-        displayCorrEl.textContent = "Correct!"
-        console.log("Your current score is " + score)
-        scoreBoard.textContent = score;
-        i++;
-          if (i < 5) {
-            displayQuestions();
-          } else {
-            endGame();
-          }
-      } else {
-        displayCorrEl.textContent = "Incorrect!  Lose 5 seconds!"
-        secondsLeft = secondsLeft - 5;
-        scoreBoard.textContent = score;
-        i++;
-        if (i < 5) {
-          displayQuestions();
-        } else {
-          endGame();
-        }
+      CheckAnswer(userCompNum);
+      // if (userCompNum === answersArr[i]){
+      //   score++;
+      //   displayCorrEl.textContent = "Correct!";
+      //   console.log("Your current score is " + score)
+      //   scoreBoard.textContent = score;
+      //   i++;
+      //     if (i < 2) {
+      //       displayQuestions();
+      //     } else {
+      //       endGame();
+      //     }
+      // } else {
+      //   displayCorrEl.textContent = "Incorrect!  Lose 5 seconds!"
+      //   secondsLeft = secondsLeft - 5;
+      //   scoreBoard.textContent = score;
+      //   i++;
+      //   if (i < 5) {
+      //     displayQuestions();
+      //   } else {
+      //     endGame();
+      //   }
 
-      }
+      // }
 
     })
 }
 
+function CheckAnswer(userSelect) {
+console.log("you are in check answer and userSelect = " + userSelect);
+console.log(i);
+console.log(typeof userSelect)
+console.log(typeof answersArr[i])
+  if (userSelect === answersArr[i]){
+    displayCorrEl.innerHTML = "CORRECT!"
+    score++;
+    console.log("INNNNNN")
+    console.log("Your current score is " + score)
+    scoreBoard.textContent = "Current Score: " + score;
+    i++
+    if (i < 2) {
+      displayQuestions();
+    } else {
+      endGame();
+    }
+  } else {
+    displayCorrEl.innerHTML = "Incorrect!  Lose 5 seconds!"
+    secondsLeft = secondsLeft - 5;
+    scoreBoard.textContent = "Current Score: " + score;
+    console.log(score);
+    i++
+    if (i < 2) {
+      displayQuestions();
+    } else {
+      endGame();
+    }
+
+
+  }
+}
+
 function endGame () {
   score = score + secondsLeft;
+  scoreBoard.textContent = "Final Score = " + score;
   questionEl.textContent = "All done!"
+  // displayCorrEl.textContent = "";
 
 }
 
